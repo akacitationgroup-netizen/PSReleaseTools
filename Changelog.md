@@ -1,200 +1,233 @@
 # Change Log for PSReleaseTools
 
-## v1.12.0
+This file format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-+ Exported public functions to individual files.
-+ Fixed `A parameter cannot be found that matches parameter name 'source'` bug in `Save-PSReleaseAsset`. Renamed the `DL` private function to `_DownloadAsset`.
+## [Unreleased]
+### Changed
+- Updated change log to new format. Moved older change log entries to an archive change log for historical purposes.
 
-## v1.11.0
+## [v1.12.0] - 2022-06-04
 
-+ Modified private function `getCode` to get latest release sorting on the published date.
+### Changed
 
-## v1.10.0
+- Exported public functions to individual files.
 
-+ Help file cleanup.
-+ Modified `images/PowerShell_avatar.png` to use a transparent background.
-+ Modified `Get-PSReleaseCurrent` to write a `PSReleaseStatus` type of object to the pipeline.
-+ Added a custom format file, `psreleasestatus.format.ps1xml` for the `PSReleaseStatus` type.
-+ Fixed broken online help links. ([Issue #25](https://github.com/jdhitsolutions/PSReleaseTools/issues/112)).
-+ Updated `README.md`.
+### Fixed
 
-## v1.9.0
+- Fixed `A parameter cannot be found that matches parameter name 'source'` bug in `Save-PSReleaseAsset`. Renamed the `DL` private function to `_DownloadAsset`.
 
-+ Added `-EnableRunContext` parameter to `Install-PowerShell`, `Install-PSPreview`, and the internal `installMSI` functions to reflect a new MSI installation option.
-+ Modified `installMSI` to create a log file at `$env:temp\PS7Install.log`.
-+ Help updates.
-+ Updated `README.md`.
-+ Updated license year.
+## [v1.11.0] - 2021-10-15
 
-## v1.8.0
+### Changed
 
-+ Added commands (`Get-PSIssue`, `Get-PSIssueLabel`,`Open-PSIssue`) to view and search issues from the PowerShell GitHub repository.
-+ Added format file `githubissues.format.ps1xml` which is used by `Get-PSIssue`.
-+ `Changelog` clean up.
-+ Updated help documentation.
-+ Updated `README.md`.
+- Modified private function `getCode` to get latest release sorting on the published date.
 
-## v1.7.1
+## [v1.10.0] - 2021-08-10
 
-+ Documentation updates.
-+ Merge pull request #24 from xtqqczze/lint to fix casing issues.
-+ Updated manifest private data tags.
+### Added
 
-## v1.7.0
+- Added a custom format file, `psreleasestatus.format.ps1xml` for the `PSReleaseStatus` type.
 
-+ Fixed `critiera` typo in warning message for `Get-PSReleaseSummary`.
-+ Updated `README.md` (Thanks @Gimly)
+### Changed
 
-## v1.6.2
+- Help file cleanup.
+- Modified `images/PowerShell_avatar.png` to use a transparent background.
+- Modified `Get-PSReleaseCurrent` to write a `PSReleaseStatus` type of object to the pipeline.
+- Updated `README.md`.
 
-+ Updated warning message for `Install-PSPreview` with a clearer error message.and suppressed error output. (Issue #21)
-+ Updated the same for `Install-PowerShell`.
-+ Added a dynamic parameter called `-Online` to `Get-PSReleaseSummary` to open the GitHub release page in the default web browser.
+### Fixed
 
-## v1.6.1
+- Fixed broken online help links. ([Issue #25](https://github.com/jdhitsolutions/PSReleaseTools/issues/112)).
 
-+ Updated `Install-PSPreview` and `Install-PowerShell` to fix errors when using `-WhatIf`. (Issue #19)
+## [v1.9.0] - 2021-01-13
 
-## v1.6.0
+### Added
 
-+ Updated install functions to allow options for enabling remoting and Explorer context menus.
-+ Updated documentation and help to reference PowerShell 7 and not PowerShell Core. (Issue #18)
-+ Fixed bug in  Get-PSReleaseAsset` that failed to label a family for CentOS assets.
-+ Updated commands to recognize the LTS assets.
-+ Added `-LTS` parameter to `Get-PSReleaseAsset` to limit results to LTS-related files.
-+ Renamed `Install-PSCore` to `Install-PowerShell`. Kept `Install-PSCore` as a command alias.
-+ Updated `README.md`.
+- Added `-EnableRunContext` parameter to `Install-PowerShell`, `Install-PSPreview`, and the internal `installMSI` functions to reflect a new MSI installation option.
 
-## v1.5.0
+### Changed
 
-+ Fixed bug installing preview on Windows PowerShell (Issue #16).
-+ Fixed regex in `Get-PSReleaseAsset` to get all preview files (Issue #17).
-+ Help updates to reflect PowerShell 7.
-+ License update.
-+ Updated `README.md`.
+- Help updates.
+- Modified `installMSI` to create a log file at `$env:temp\PS7Install.log`.
+- Updated `README.md`.
+- Updated license year.
 
-## v1.4.1
+## [v1.8.0] - 2020-08-25
 
-+ Merged PR from @weebsnore to fix a bug when installing from a path with an apostrophe.
-+ Minor help corrections.
+### Added
 
-## v1.4.0
+- Added commands (`Get-PSIssue`, `Get-PSIssueLabel`,`Open-PSIssue`) to view and search issues from the PowerShell GitHub repository.
+- Added format file `githubissues.format.ps1xml` which is used by `Get-PSIssue`.
 
-+ Changed online help links to `bit.ly` links.
-+ Added `msix` as an asset format.
-+ Updated `Get-PSReleaseAsset` to be stricter on format matching.
-+ Fixed bug with `Install-PSPreview` erroring on the path (Issue #15).
+### Changed
 
-## v1.3.2
+- `Changelog` clean up.
+- Updated help documentation.
+- Updated `README.md`.
 
-+ Fixed another new bug with installation commands.
-+ Standardized verbose output to include a timestamp.
+## [v1.7.1] - 2020-07-30
 
-## v1.3.1
+### Changed
 
-+ Fixed installation issue with spaces in filenames (Issue #13).
+- Documentation updates.
+- Merge pull request #24 from xtqqczze/lint to fix casing issues.
+- Updated manifest private data tags.
 
-## v1.3.0
+## [v1.7.0] - 2020-07-10
 
-+ Added online help links.
-+ Updated `README.md`.
+### Changed
 
-## v1.2.0
+- Updated `README.md` (Thanks @Gimly)
 
-+ Added `Install-PSCore` command for Windows only (Issue #11).
-+ Reorganized module layout.
-+ Updated verbose messages in private functions.
-+ Updated help.
-+ Added YAML versions of help documents.
-+ Updated `README.md`.
+### Fixed
 
-## v1.1.0
+- Fixed `critiera` typo in warning message for `Get-PSReleaseSummary`.
 
-+ Updated asset cmdlets to include new families (Issue #10).
-+ Updated `Get-PSReleaseAsset` to allow specifying a format (Issue #9).
-+ Updated `Save-PSReleaseAsset` and made `Format` a formal parameter.
-+ Updated `README.md`.
-+ Added `Install-PSPreview` to install the latest 64bit PowerShell Preview build for Windows.
-+ Help updates.
+## [v1.6.2] - 2020-06-26
 
-## v1.0.0
+### Added
 
-+ There have been enough updates that this seems like a good time.
+- Added a dynamic parameter called `-Online` to `Get-PSReleaseSummary` to open the GitHub release page in the default web browser.
 
-## v0.8.1
+### Changed
 
-+ Raised minimum PowerShell version to 5.1 to support CompatiblePSEditions.
+- Updated warning message for `Install-PSPreview` with a clearer error message.and suppressed error output. ([Issue #21](https://github.com/jdhitsolutions/PSReleaseTools/issues/21))
+- Updated the same for `Install-PowerShell`.
 
-## v0.8.0
+## [v1.6.1] - 2020-03-27
 
-+ Modified commands to default to the most recent stable build.
-+ Modified commands to get preview build and related assets (Issue #7).
-+ Updated the manifest to reflect support for Desktop and Core editions.
-+ Added an alias of `x64` to the `Only64bit` parameter in `Get-PSReleaseAsset`.
-+ Reorganized module file layout.
-+ Help updates.
-+ Updated `README.md`.
+### Changed
 
-## v0.7.0
+- Updated `Install-PSPreview` and `Install-PowerShell` to fix errors when using `-WhatIf`. ([Issue #19](https://github.com/jdhitsolutions/PSReleaseTools/issues/19))
 
-+ Added switch parameter on `Get-PSReleaseAsset` to only get x64 versions.
-+ Added an option to display the current release summary as a markdown document.
-+ help updates.
-+ file cleanup for the PowerShell Gallery.
-+ fixed license.
+## [v1.6.0] - 2020-03-11
 
-## v0.6.1
+### Added
 
-+ Added code to fix TLS issue with GitHub (Issue #5).
+- Added `-LTS` parameter to `Get-PSReleaseAsset` to limit results to LTS-related files.
 
-## v0.6.0
+### Changed
 
-+ Updated to support GA for PowerShell 6 (Issue #4).
-+ Changed Save-PSReleaseAsset Name parameter to Family.
-+ Modified Family values.
-+ Updated documentation.
-+ Updated screenshots and README.md.
+- Updated install functions to allow options for enabling remoting and Explorer context menus.
+- Updated documentation and help to reference PowerShell 7 and not PowerShell Core. ([Issue #18](https://github.com/jdhitsolutions/PSReleaseTools/issues/18))
+- Renamed `Install-PSCore` to `Install-PowerShell`. Kept `Install-PSCore` as a command alias.
+- Updated commands to recognize the LTS assets.
+- Updated `README.md`.
 
-## v0.5.1.0
+### Fixed
 
-+ Added asset support for SUSE and AppImage.
-+ Minor changes to help documentation.
-+ Updated Pester tests.
+- Fixed bug in  Get-PSReleaseAsset` that failed to label a family for CentOS assets.
 
-## v0.5.0.0
+## [v1.5.0] - 2020-02-03
 
-+ Modified download to pull file hashes from summary and compare them to downloaded files. This is a BREAKING CHANGE.
-+ Updated `Get-PSReleaseAsset` to include the SHA256 hash.
-+ Updated help.
-+ updated README.
+### Changed
 
-## v0.4.0.2
+- Help updates to reflect PowerShell 7.
+- License update.
+- Updated `README.md`.
 
-+ Fixed semantic versioning in the manifest.
+### Fixed
 
-## v0.4.0.1
+- Fixed bug installing preview on Windows PowerShell ([Issue #16](https://github.com/jdhitsolutions/PSReleaseTools/issues/16)).
+- Fixed regex in `Get-PSReleaseAsset` to get all preview files ([Issue #17](https://github.com/jdhitsolutions/PSReleaseTools/issues/17)).
 
-+ Changed to semantic versioning.
+## [v1.4.1] - 2019-08-27
 
-## v0.4.0
+### Changed
 
-+ Updated author name in manifest.
-+ Added `Get-PSReleaseCurrent`.
-+ Updated help.
+- Merged PR from @weebsnore to fix a bug when installing from a path with an apostrophe.
+- Minor help corrections.
 
-## v0.3.0
+## [v1.4.0] - 2019-08-26
 
-+ Renamed `Save-PSRelease` to `Save-PSReleaseAsset` for consistency (Issue #1).
-+ Updated documentation.
-+ Updated manifest.
-+ Published to PSGallery.
+### Added
 
-## v0.2.0
+- Added `msix` as an asset format.
 
-+ Added external documentation.
+### Changed
 
-## v0.1.0
+- Changed online help links to `bit.ly` links.
+- Updated `Get-PSReleaseAsset` to be stricter on format matching.
 
-+ Initial module release.
-+ updated license copyright.
-+ updated README.
+### Fixed
+
+- Fixed bug with `Install-PSPreview` erroring on the path ([Issue #15](https://github.com/jdhitsolutions/PSReleaseTools/issues/15)).
+
+## [v1.3.2] - 2019-07-18
+
+### Changed
+
+- Standardized verbose output to include a timestamp.
+
+### Fixed
+
+- Fixed another new bug with installation commands.
+
+## [v1.3.1] - 2019-07-18
+
+### Fixed
+
+- Fixed installation issue with spaces in filenames ([Issue #13](https://github.com/jdhitsolutions/PSReleaseTools/issues/13)).
+
+## [v1.3.0] - 2019-07-16
+
+### Added
+
+- Added online help links.
+
+### Changed
+
+- Updated `README.md`.
+
+## [v1.2.0] - 2019-07-12
+
+### Added
+
+- Added `Install-PSCore` command for Windows only (Issue #11).
+- Added YAML versions of help documents.
+
+### Changed
+
+- Reorganized module layout.
+- Updated verbose messages in private functions.
+- Updated help.
+- Updated `README.md`.
+
+## [v1.1.0] - 2019-07-10
+
+### Added
+
+- Added `Install-PSPreview` to install the latest 64bit PowerShell Preview build for Windows.
+
+### Changed
+
+- Updated asset cmdlets to include new families (Issue #10).
+- Updated `Get-PSReleaseAsset` to allow specifying a format (Issue #9).
+- Updated `Save-PSReleaseAsset` and made `Format` a formal parameter.
+- Updated `README.md`.
+- Help updates.
+
+## [v1.0.0] - 2019-02-13
+
+- There have been enough updates that this seems like a good time.
+
+[Unreleased]: https://github.com/jdhitsolutions/PSReleaseTools/compare/..HEAD
+[v1.12.0]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.11.0..v1.12.0
+[v1.11.0]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.10.0..v1.11.0
+[v1.10.0]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.9.0..v1.10.0
+[v1.9.0]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.8.0..v1.9.0
+[v1.8.0]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.7.1..v1.8.0
+[v1.7.1]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.7.0..v1.7.1
+[v1.7.0]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.6.2..v1.7.0
+[v1.6.2]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.6.1..v1.6.2
+[v1.6.1]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.6.0..v1.6.1
+[v1.6.0]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.5.0..v1.6.0
+[v1.5.0]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.4.1..v1.5.0
+[v1.4.1]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.4.0..v1.4.1
+[v1.4.0]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.3.2..v1.4.0
+[v1.3.2]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.3.1..v1.3.2
+[v1.3.1]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.3.0..v1.3.1
+[v1.3.0]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.2.0..v1.3.0
+[v1.2.0]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.1.0..v1.2.0
+[v1.1.0]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.0.0..v1.1.0
+[v1.0.0]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v0.8.1..v1.0.0

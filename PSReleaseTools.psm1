@@ -4,25 +4,25 @@ ForEach-Object {
     . $_.fullname
 }
 
-#configure TLS settings for GitHub
+#configure TLS settings for GitHub as a "just in case" measure
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 #cache issue labels
 $global:PSIssueLabel = Get-PSIssueLabel
 
-#define an autocompleter for Get-PSIssue
+#define an auto completer for Get-PSIssue
 Register-ArgumentCompleter -CommandName Get-PSIssue -ParameterName Label -ScriptBlock {
     param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameter)
 
     Try {
-        Get-Variable PSIssuleLabel -Scope global -ErrorAction stop
+        Get-Variable PSIssueLabel -Scope global -ErrorAction stop
     }
     Catch {
         $global:PSIssueLabel = Get-PSIssueLabel
     }
-    #PowerShell code to populate $wordtoComplete
-    ($global:psissuelabel).where( { $_.name -like "*$wordToComplete*" }) | ForEach-Object {
-        # completion text,listitem text,result type,Tooltip
+    #PowerShell code to populate $WordToComplete
+    ($global:PSIssueLabel).where( { $_.name -like "*$wordToComplete*" }) | ForEach-Object {
+        # completion text,listItem text,result type,Tooltip
         if (-not $_.description) {
             $_.description = "no description"
         }
