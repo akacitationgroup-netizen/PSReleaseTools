@@ -5,11 +5,11 @@ function _DownloadAsset {
     [CmdletBinding(SupportsShouldProcess)]
     param([string]$Source, [string]$Destination, [string]$Hash, [switch]$Passthru)
 
-    Write-Verbose "[$((Get-Date).TimeofDay) $($MyInvocation.MyCommand)] $Source to $Destination"
+    Write-Verbose "[$((Get-Date).TimeOfDay) $($MyInvocation.MyCommand)] $Source to $Destination"
 
     if ($PSCmdlet.ShouldProcess($Destination, "Downloading $Source")) {
         Invoke-WebRequest -Uri $source -UseBasicParsing -DisableKeepAlive -OutFile $Destination
-        Write-Verbose "[$((Get-Date).TimeofDay) $($MyInvocation.MyCommand)] Comparing file hash to $Hash"
+        Write-Verbose "[$((Get-Date).TimeOfDay) $($MyInvocation.MyCommand)] Comparing file hash to $Hash"
         $f = Get-FileHash -Path $Destination -Algorithm SHA256
         if ($f.Hash -ne $Hash) {
             Write-Warning "Hash mismatch. $Destination may be incomplete."
@@ -29,18 +29,20 @@ function GetData {
 
     $uri = "https://api.github.com/repos/powershell/powershell/releases"
 
-    Write-Verbose "[$((Get-Date).TimeofDay) $($MyInvocation.MyCommand)] Getting current release information from $uri"
+    Write-Verbose "[$((Get-Date).TimeOfDay) $($MyInvocation.MyCommand)] Getting current release information from $uri"
     $get = Invoke-RestMethod -Uri $uri -Method Get -ErrorAction Stop
 
     if ($Preview) {
-        Write-Verbose "[$((Get-Date).TimeofDay) $($MyInvocation.MyCommand)] Getting latest preview"
-        ($get).where( { $_.prerelease }) | Sort-Object -Property Published_At -Descending | Select-Object -First 1
+        Write-Verbose "[$((Get-Date).TimeOfDay) $($MyInvocation.MyCommand)] Getting latest preview"
+        ($get).where( { $_.prerelease }) | Sort-Object -Property Published_At -Descending |
+        Select-Object -First 1
     }
     else {
-        Write-Verbose "[$((Get-Date).TimeofDay) $($MyInvocation.MyCommand)] Getting latest stable release"
-        ($get).where( { -NOT $_.prerelease }) | Sort-Object -Property Published_At -Descending | Select-Object -First 1
+        Write-Verbose "[$((Get-Date).TimeOfDay) $($MyInvocation.MyCommand)] Getting latest stable release"
+        ($get).where( { -NOT $_.prerelease }) | Sort-Object -Property Published_At -Descending |
+        Select-Object -First 1
     }
-}
+} #close GetData
 
 function InstallMsi {
     [CmdletBinding(SupportsShouldProcess)]
@@ -56,10 +58,14 @@ function InstallMsi {
         [Parameter(HelpMessage = "Add 'Open Here' context menus to Explorer.")]
         [switch]$EnableContextMenu,
         [Parameter(HelpMessage = "Add 'Run with PowerShell 7` context menu for PowerShell files.")]
-        [switch]$EnableRunContext
+        [switch]$EnableRunContext,
+        [Parameter(HelpMessage = "Disable Telemetry")]
+        [switch]$DisableTelemetry,
+        [Parameter(HelpMessage = "Disable updating PowerShell through Windows Update or WSUS")]
+        [switch]$DisableWindowsUpdate
     )
 
-    Write-Verbose "[$((Get-Date).TimeofDay) $($MyInvocation.MyCommand)] Creating Start-Process parameters"
+    Write-Verbose "[$((Get-Date).TimeOfDay) $($MyInvocation.MyCommand)] Creating Start-Process parameters"
 
     $modeOption = switch ($Mode) {
         "Full" { "/qf" }
@@ -88,18 +94,26 @@ function InstallMsi {
         #Add 'Run with PowerShell 7` context menu for PowerShell files
         $installOption += " ADD_FILE_CONTEXT_MENU_RUNPOWERSHELL=1"
     }
-
-    Write-Verbose "[$((Get-Date).TimeofDay) $($MyInvocation.MyCommand)] FilePath: $Path"
-    Write-Verbose "[$((Get-Date).TimeofDay) $($MyInvocation.MyCommand)] ArgumentList: $installOption"
-
-    if ($PSCmdlet.ShouldProcess("$Path $installOption")) {
-        Write-Verbose "[$((Get-Date).TimeofDay) $($MyInvocation.MyCommand)] Starting installation process"
-        Start-Process -FilePath $Path -ArgumentList $installOption
+    # 22 Aug 2025 Added newer installation options
+    if ($DisableTelemetry) {
+        $installOption += " DISABLE_TELEMETRY=1"
+    }
+    If ($DisableWindowsUpdate) {
+        $installOption += " ENABLE_MU=0 USE_MU=0"
     }
 
-    Write-Verbose "[$((Get-Date).TimeofDay) $($MyInvocation.MyCommand)] Ending function"
+    Write-Verbose "[$((Get-Date).TimeOfDay) $($MyInvocation.MyCommand)] FilePath: $Path"
+    Write-Verbose "[$((Get-Date).TimeOfDay) $($MyInvocation.MyCommand)] ArgumentList: $installOption"
 
-} #close installmsi
+    if ($PSCmdlet.ShouldProcess("$Path $installOption")) {
+        Write-Verbose "[$((Get-Date).TimeOfDay) $($MyInvocation.MyCommand)] Starting installation process"
+        Start-Process -FilePath $Path -ArgumentList $installOption
+    } #WhatIf
+
+    Write-Verbose "[$((Get-Date).TimeOfDay) $($MyInvocation.MyCommand)] Ending function"
+
+} #close InstallMsi
+
 
 Function NewGHIssue {
     [cmdletbinding()]
@@ -109,11 +123,10 @@ Function NewGHIssue {
     )
     Process {
         # GitHubIssue([string]$Title,[string]$url,[datetime]$Created,[datetime]$Updated,[string]$Body)
-        Write-Verbose "Creating issue for $($inputObject.title)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Creating issue for $($inputObject.title)"
         $obj = [GitHubIssue]::New($InputObject.Title, $InputObject.html_url, $inputObject.created_at, $InputObject.updated_at, $inputObject.body)
         $obj.SubmittedBy = $inputObject.user.login
         $obj.state = $InputObject.state
-        $obj.SubmittedBy = $inputObject.user.login
         $obj.Labels = $inputObject.labels.name
         $obj.CommentCount = $inputObject.comments
         $obj.Milestone = $inputObject.milestone.Title
@@ -125,3 +138,5 @@ Function NewGHIssue {
         $obj
     }
 }
+
+

@@ -4,8 +4,39 @@ ForEach-Object {
     . $_.fullname
 }
 
+#Export the module version to a global variable that will be used in Verbose messages
+$mod = Import-PowerShellDataFile -Path $PSScriptRoot\PSReleaseTools.psd1 -ErrorAction Stop
+$moduleVersion = $mod.ModuleVersion
+
 #configure TLS settings for GitHub as a "just in case" measure
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
+Class GitHubIssue {
+    [datetime]$Created
+    [datetime]$Updated
+    [string]$SubmittedBy
+    [string]$State = "open"
+    [string]$Title
+    [string]$body
+    [string[]]$Labels
+    [int32]$CommentCount
+    [string]$Milestone
+    [string]$Url
+    [bool]$IsPullRequest = $False
+
+    [void]Show() {
+        Start-Process $this.url
+    }
+
+    GitHubIssue([string]$Title, [string]$url, [datetime]$Created, [datetime]$Updated, [string]$Body) {
+        $this.Title = $Title
+        $this.url = $url
+        $this.Created = $Created
+        $this.updated = $Updated
+        $this.body = $Body
+    }
+}
+
 
 #cache issue labels
 $global:PSIssueLabel = Get-PSIssueLabel

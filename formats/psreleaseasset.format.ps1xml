@@ -1,0 +1,59 @@
+<!--
+Format type data generated 08/22/2025 09:22:34 by Cadenza\jeff
+
+This file was created using the New-PSFormatXML command that is part
+of the PSScriptTools module.
+
+https://github.com/jdhitsolutions/PSScriptTools
+-->
+<Configuration>
+  <ViewDefinitions>
+    <View>
+      <!--Created 08/22/2025 09:22:34 by Cadenza\jeff-->
+      <Name>default</Name>
+      <ViewSelectedBy>
+        <TypeName>PSReleaseAsset</TypeName>
+      </ViewSelectedBy>
+      <ListControl>
+        <listEntries>
+          <listEntry>
+            <ListItems>
+              <ListItem>
+                <Label>FileName</Label>
+                <PropertyName>FileName</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Family</Label>
+                <PropertyName>Family</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Format</Label>
+                <PropertyName>Format</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Updated</Label>
+                <PropertyName>Updated</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Downloads</Label>
+                <ScriptBlock>
+                "{0:n0}" -f $_.downloadcount
+                </ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <Label>SizeMB</Label>
+                <ScriptBlock>
+                 ($_.Size/1mb) -as [Int32]
+                 </ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <Label>URL</Label>
+                <PropertyName>URL</PropertyName>
+              </ListItem>
+            </ListItems>
+          </listEntry>
+        </listEntries>
+      </ListControl>
+    </View>
+  </ViewDefinitions>
+</Configuration>

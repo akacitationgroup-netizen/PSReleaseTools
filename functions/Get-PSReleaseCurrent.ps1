@@ -7,7 +7,9 @@ function Get-PSReleaseCurrent {
     )
 
     begin {
-        Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Starting: $($MyInvocation.MyCommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Starting: $($MyInvocation.MyCommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Running PowerShell $($PSVersionTable.PSVersion) in $($host.name)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Using module version $moduleVersion"
     } #begin
 
     process {
@@ -25,7 +27,7 @@ function Get-PSReleaseCurrent {
 
         if ($data.tag_name) {
             #create a custom object. This object has a custom format file.
-            [pscustomobject]@{
+            [PSCustomObject]@{
                 PSTypeName   = "PSReleaseStatus"
                 Name         = $data.name
                 Version      = $data.tag_name
@@ -39,7 +41,7 @@ function Get-PSReleaseCurrent {
     } #process
 
     end {
-        Write-Verbose "[$((Get-Date).TimeofDay) END    ] Ending: $($MyInvocation.MyCommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Ending: $($MyInvocation.MyCommand)"
     } #end
 
 }

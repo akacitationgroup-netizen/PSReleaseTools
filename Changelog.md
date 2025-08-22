@@ -3,8 +3,28 @@
 This file format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
+
+## [1.13.0] - 2025-08-22
+
+### Added
+
+- Added environment and module metadata to verbose output.
+
 ### Changed
+
+- Added parameters `DisableTelemetry` and `DisableWindowsUpdate` to `Install-PowerShell` and `Install-PSPreview`. [[Issue #27](https://github.com/jdhitsolutions/PSReleaseTools/issues/27)]
+- Updated `Get-PSReleaseAsset` to write a typed custom object to the pipeline and added defined custom formatting.
+- Updated `Get-PSReleaseAsset` to better handle family groupings including support for ARM.
+- Updated markdown creation in `Get-PSReleaseSummary`.
+- General code cleanup.
+- Updated license year.
+- Help documentation updates.
 - Updated change log to new format. Moved older change log entries to an archive change log for historical purposes.
+
+### Fixed
+
+- Fixed missing class needed for `Get-PSIssue`.
+- Fixed duplicate entry in new Issue object.
 
 ## [v1.12.0] - 2022-06-04
 
@@ -211,7 +231,8 @@ This file format is based on [Keep a Changelog](https://keepachangelog.com/en/1.
 
 - There have been enough updates that this seems like a good time.
 
-[Unreleased]: https://github.com/jdhitsolutions/PSReleaseTools/compare/..HEAD
+[Unreleased]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.13.0..HEAD
+[1.13.0]: https://github.com/jdhitsolutions/PSReleaseTools/compare/vv1.12.0..v1.13.0
 [v1.12.0]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.11.0..v1.12.0
 [v1.11.0]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.10.0..v1.11.0
 [v1.10.0]: https://github.com/jdhitsolutions/PSReleaseTools/compare/v1.9.0..v1.10.0

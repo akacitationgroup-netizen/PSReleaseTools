@@ -122,7 +122,7 @@
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -212,7 +212,7 @@ body        : Steps to reproduce
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/3jITkVR</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/e0f406</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-PSIssueLabel</maml:linkText>
@@ -289,7 +289,7 @@ body        : Steps to reproduce
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -313,7 +313,7 @@ Area-Cmdlets-Core
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/3lMpNgK</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/95cfe2</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-PSIssue</maml:linkText>
@@ -340,7 +340,7 @@ Area-Cmdlets-Core
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Family</maml:name>
           <maml:description>
-            <maml:para>Limit search to a particular platform.</maml:para>
+            <maml:para>Limit search to a particular platform. Not all families will have assets for every release.</maml:para>
           </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">Rhel</command:parameterValue>
@@ -348,13 +348,13 @@ Area-Cmdlets-Core
             <command:parameterValue required="false" command:variableLength="false">Ubuntu</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">Debian</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">Windows</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">AppImage</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">Arm</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">MacOS</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">Alpine</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">FXDependent</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">CentOS</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">Linux</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">CBL-Mariner</command:parameterValue>
           </command:parameterValueGroup>
           <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
           <dev:type>
@@ -423,7 +423,7 @@ Area-Cmdlets-Core
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Family</maml:name>
         <maml:description>
-          <maml:para>Limit search to a particular platform.</maml:para>
+          <maml:para>Limit search to a particular platform. Not all families will have assets for every release.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
         <dev:type>
@@ -494,7 +494,7 @@ Area-Cmdlets-Core
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Object</maml:name>
+          <maml:name>PSReleaseAsset</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -503,7 +503,7 @@ Area-Cmdlets-Core
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -511,83 +511,67 @@ Area-Cmdlets-Core
         <maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-PSReleaseAsset -Family Rhel
 
-
-FileName      : powershell-7.0.0-1.rhel.7.x86_64.rpm
-Family        : Rhel
-Format        : rpm
-SizeMB        : 55
-Hash          : 09EB0F49F91FC5DA569DE9F8FCADA36CDF79846A1AEA0679D357D316453B2838
-Created       : 3/3/2020 10:55:11 PM
-Updated       : 3/3/2020 10:55:13 PM
-URL           : https://github.com/PowerShell/PowerShell/releases/download/v7.0.0/powershell-7.0.0-1.rhel.7.x86_64.rpm
-DownloadCount : 601
-
-FileName      : powershell-lts-7.0.0-1.rhel.7.x86_64.rpm
-Family        : Rhel
-Format        : rpm
-SizeMB        : 58
-Hash          : EF6D8728FDE0226A715B85FB199352D9EDE2ECC88CFF890846713CCA34099D82
-Created       : 3/3/2020 10:56:50 PM
-Updated       : 3/3/2020 10:56:52 PM
-URL           : https://github.com/PowerShell/PowerShell/releases/download/v7.0.0/powershell-lts-7.0.0-1.rhel.7.x86_64.rpm
-DownloadCount : 346</dev:code>
+FileName  : powershell-7.5.2-1.rh.x86_64.rpm
+Family    : {Rhel, CentOS}
+Format    : rpm
+Updated   : 6/24/2025 8:49:21 PM
+Downloads : 9,330
+SizeMB    : 71
+URL       : https://github.com/PowerShell/PowerShell/releases/download/v7.5.2/powershell-7.5.2-1.rh.x86_64.rpm</dev:code>
         <dev:remarks>
           <maml:para>Getting the latest Red Hat related assets for the stable build.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-PSReleaseAsset -Family Windows -Only64Bit -Preview
+        <dev:code>PS C:\&gt; Get-PSReleaseAsset -Family Windows -Only64Bit -Preview | Select *
 
+FileName      : PowerShell-7.6.0-preview.4-win-x64.exe
+Family        : Windows
+Format        : exe
+Size          : 113824048
+Hash          : 2F03028E87246732D8BB5E5F887992312C17815E90E93D1FB7FBB9055CB89DC1
+Created       : 4/8/2025 9:36:42 PM
+Updated       : 4/8/2025 9:36:46 PM
+URL           : https://github.com/PowerShell/PowerShell/releases/download/v7.6.0-preview.4/PowerShell-7.6.0-preview.4-win-x64.exe
+DownloadCount : 5048
 
-FileName      : PowerShell-7.0.0-rc.3-win-x64.msi
+FileName      : PowerShell-7.6.0-preview.4-win-x64.msi
 Family        : Windows
 Format        : msi
-SizeMB        : 87
-Hash          : 26ECB13EAD40B006B74C6A901A9F9CF08AE12F9D9E3C77A07CB8D0CFA8C7024C
-Created       : 2/21/2020 11:43:55 PM
-Updated       : 2/21/2020 11:43:57 PM
-URL           : https://github.com/PowerShell/PowerShell/releases/download/v7.0.0-rc.3/PowerShell-7.0.0-rc.3-win-x64.msi
-DownloadCount : 17953
+Size          : 114393088
+Hash          : 844957E3954504D76926274FC606B849764FF5CD9712EBAA9BE639DB9CCD201E
+Created       : 4/8/2025 9:36:47 PM
+Updated       : 4/8/2025 9:36:52 PM
+URL           : https://github.com/PowerShell/PowerShell/releases/download/v7.6.0-preview.4/PowerShell-7.6.0-preview.4-win-x64.msi
+DownloadCount : 89688
 
-FileName      : PowerShell-7.0.0-rc.3-win-x64.msix
-Family        : Windows
-Format        : msix
-SizeMB        : 90
-Hash          : 6E75503E0F026D9065FDE35885015645E7AA82E376F68A9E98A8892FC987D1E5
-Created       : 2/21/2020 11:43:57 PM
-Updated       : 2/21/2020 11:43:59 PM
-URL           : https://github.com/PowerShell/PowerShell/releases/download/v7.0.0-rc.3/PowerShell-7.0.0-rc.3-win-x64.msix
-DownloadCount : 1558
-
-FileName      : PowerShell-7.0.0-rc.3-win-x64.zip
+FileName      : PowerShell-7.6.0-preview.4-win-x64.zip
 Family        : Windows
 Format        : zip
-SizeMB        : 89
-Hash          : C8448F44619517C24DF8F392D6AC9E3A1F9589F2C74A3C9EB8CC94B902D78835
-Created       : 2/21/2020 11:43:59 PM
-Updated       : 2/21/2020 11:44:01 PM
-URL           : https://github.com/PowerShell/PowerShell/releases/download/v7.0.0-rc.3/PowerShell-7.0.0-rc.3-win-x64.zip
-DownloadCount : 1763</dev:code>
+Size          : 115864208
+Hash          : 385012237C108ECDFCD35DBDBB989194F56D8381F864EA69E4ECC8BD7215C6B4
+Created       : 4/8/2025 9:36:53 PM
+Updated       : 4/8/2025 9:36:58 PM
+URL           : https://github.com/PowerShell/PowerShell/releases/download/v7.6.0-preview.4/PowerShell-7.6.0-preview.4-win-x64.zip
+DownloadCount : 17656</dev:code>
         <dev:remarks>
-          <maml:para>Get the preview build assets for Windows.</maml:para>
+          <maml:para>Get the preview build assets for Windows showing all properties.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-PSReleaseAsset -Family ubuntu -lts | Save-PSReleaseAsset -Path D:\PS -whatif
-
-What if: Performing the operation "Downloading https://github.com/PowerShell/PowerShell/releases/download/v7.0.0/powershell-lts_7.0.0-1.ubuntu.16.04_amd64.deb" on target "D:\PS\powershell-lts_7.0.0-1.ubuntu.16.04_amd64.deb".
-What if: Performing the operation "Downloading https://github.com/PowerShell/PowerShell/releases/download/v7.0.0/powershell-lts_7.0.0-1.ubuntu.18.04_amd64.deb" on target "D:\PS\powershell-lts_7.0.0-1.ubuntu.18.04_amd64.deb".</dev:code>
+        <dev:code>PS C:\&gt;  Get-PSReleaseAsset -Family Arm -Format msi | Save-PSReleaseAsset -Path c:\temp -WhatIf
+What if: Performing the operation "Downloading https://github.com/PowerShell/PowerShell/releases/download/v7.5.2/PowerShell-7.5.2-win-arm64.msi" on target "c:\temp\PowerShell-7.5.2-win-arm64.msi".</dev:code>
         <dev:remarks>
-          <maml:para>Run the command without -Whatif to actually download the Ubuntu related files that are also part of the LTS channel, and save to D:\PS.</maml:para>
+          <maml:para>Run the command without -WhatIf to actually download the installation files.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>http://bit.ly/325hHm8</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/75c2f0</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Save-PSReleaseAsset</maml:linkText>
@@ -659,7 +643,7 @@ What if: Performing the operation "Downloading https://github.com/PowerShell/Pow
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -667,9 +651,9 @@ What if: Performing the operation "Downloading https://github.com/PowerShell/Pow
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-PSReleaseCurrent
 
-Name                            OnlineVersion  Released                  LocalVersion
-----                            -------        --------                  ------------
-v7.1.0 Release of PowerShell    7.1.0          11/11/2020 11:23:08 AM   5.1.19041.610</dev:code>
+Name                                   OnlineVersion       Released                    LocalVersion
+----                                   -------------       --------                    ------------
+v7.5.2 Release of PowerShell           7.5.2               6/24/2025 9:31:53 PM      5.1.26100.4202</dev:code>
         <dev:remarks>
           <maml:para>This gets the current release from a Windows platform running Windows PowerShell.</maml:para>
         </dev:remarks>
@@ -678,11 +662,11 @@ v7.1.0 Release of PowerShell    7.1.0          11/11/2020 11:23:08 AM   5.1.1904
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-PSReleaseCurrent -preview | Select-Object *
 
-Name         : v7.2.0-preview.2 Release of PowerShell
-Version      : v7.2.0-preview.2
-Released     : 12/15/2020 9:31:39 PM
-LocalVersion : 7.1.0
-URL          : https://github.com/PowerShell/PowerShell/releases/tag/v7.2.0-preview.2
+Name         : v7.6.0-preview.4 Release of PowerShell
+Version      : v7.6.0-preview.4
+Released     : 4/8/2025 6:00:57 PM
+LocalVersion : 5.1.26100.4202
+URL          : https://github.com/PowerShell/PowerShell/releases/tag/v7.6.0-preview.4
 Draft        : False
 Prerelease   : True</dev:code>
         <dev:remarks>
@@ -691,11 +675,11 @@ Prerelease   : True</dev:code>
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 3 --------------------------</maml:title>
-        <dev:code>PS /home/me&gt; Get-PSReleaseCurrent -preview
+        <dev:code>PS /home/jeff&gt; Get-PSReleaseCurrent -preview
 
-Name                                    OnelineVersion     Released            LocalVersion
-----                                    -------            --------            ------------
-v7.2.0-preview.2 Release of PowerShell  7.2.0-preview.2    12/15/2020 21:31:39        7.1.0</dev:code>
+Name                                   OnlineVersion   Released            LocalVersion
+----                                   -------------   --------            ------------
+v7.6.0-preview.4 Release of PowerShell 7.6.0-preview.4 04/08/2025 22:00:57        7.5.0</dev:code>
         <dev:remarks>
           <maml:para>This gets the current preview release from an Ubuntu platform.</maml:para>
         </dev:remarks>
@@ -704,7 +688,7 @@ v7.2.0-preview.2 Release of PowerShell  7.2.0-preview.2    12/15/2020 21:31:39  
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>http://bit.ly/323JVh9</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/edc785</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-PSReleaseSummary</maml:linkText>
@@ -732,7 +716,7 @@ v7.2.0-preview.2 Release of PowerShell  7.2.0-preview.2    12/15/2020 21:31:39  
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>AsMarkdown</maml:name>
           <maml:description>
-            <maml:para>Create a markdown version of the report.</maml:para>
+            <maml:para>Create a markdown version of the report. If using Show-Markdown, tables may not render correctly. You will have best results if use the -UseBrowser parameter of Show-Markdown.</maml:para>
           </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -782,7 +766,7 @@ v7.2.0-preview.2 Release of PowerShell  7.2.0-preview.2    12/15/2020 21:31:39  
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>AsMarkdown</maml:name>
         <maml:description>
-          <maml:para>Create a markdown version of the report.</maml:para>
+          <maml:para>Create a markdown version of the report. If using Show-Markdown, tables may not render correctly. You will have best results if use the -UseBrowser parameter of Show-Markdown.</maml:para>
         </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -838,46 +822,40 @@ v7.2.0-preview.2 Release of PowerShell  7.2.0-preview.2    12/15/2020 21:31:39  
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; PS C:\&gt; Get-PSReleaseSummary
+        <dev:code>PS C:\&gt; Get-PSReleaseSummary
 
 -----------------------------------------------------------
-v7.1.0 Release of PowerShell
-Published: 11/11/2020 11:23:08
+v7.5.2 Release of PowerShell
+Published: 06/24/2025 21:31:53
 -----------------------------------------------------------
-## [7.1.0] - 2020-11-11
-
-- [Diff from 7.1.0-rc.2][7.1.0]
-- [Diff from 7.0.0][7.1.0-full]
+## [7.5.2] - 2025-06-24
 
 ### Engine Updates and Fixes
 
-- Fix a logic bug in `MapSecurityZone` (#13921) (Thanks @iSazonov!)
+- Move .NET method invocation logging to after the needed type conversion is done for method arguments (#25357)
 
 ### General Cmdlet Updates and Fixes
 
-- Update `pwsh -?` output to match docs (#13748)
-
-### Tests
-
-- `markdownlint` security updates (#13730)
+- Set standard handles explicitly when starting a process with `-NoNewWindow` (#25324)
+- Make inherited protected internal instance members accessible in class scope. (#25547) (Thanks @mawosoft!)
+- Remove the old fuzzy suggestion and fix the local script file name suggestion (#25330)
+- Fix `PSMethodInvocationConstraints.GetHashCode` method (#25306) (Thanks @crazyjncsu!)
 
 ### Build and Packaging Improvements
 
 &lt;details&gt;
+
 &lt;summary&gt;
-Bump .NET to version &lt;code&gt;5.0.100-rtm.20526.5&lt;/code&gt; (#13920)
+
+&lt;p&gt;Update to .NET SDK 9.0.301&lt;/p&gt;
+
 &lt;/summary&gt;
-&lt;ul&gt;
-&lt;li&gt;Fixes to release pipeline for GA release (Internal 13410)&lt;/li&gt;
-&lt;li&gt;Change PkgES Lab to unblock build (Internal 13376)&lt;/li&gt;
-&lt;li&gt;Add validation and dependencies for &lt;code&gt;Ubuntu 20.04&lt;/code&gt; distribution to packaging script (#13993)&lt;/li&gt;
-&lt;li&gt;Add .NET install workaround for RTM (#13991)&lt;/li&gt;
 ...</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
@@ -885,7 +863,7 @@ Bump .NET to version &lt;code&gt;5.0.100-rtm.20526.5&lt;/code&gt; (#13920)
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
-        <dev:code>PS /home/jeff&gt; get-psreleasesummary -AsMarkdown -preview | Show-Markdown</dev:code>
+        <dev:code>PS C:\&gt; Get-PSReleaseSummary -AsMarkdown -preview | Show-Markdown -useBrowser</dev:code>
         <dev:remarks>
           <maml:para>Get the latest preview release summary as markdown and use the Show-Markdown command in PowerShell Core to render the markdown in the console. Note that Show-Markdown may not render tables correctly.</maml:para>
         </dev:remarks>
@@ -894,7 +872,7 @@ Bump .NET to version &lt;code&gt;5.0.100-rtm.20526.5&lt;/code&gt; (#13920)
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>http://bit.ly/32aTXxf</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/cef4e4</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-PSReleaseCurrent</maml:linkText>
@@ -912,7 +890,7 @@ Bump .NET to version &lt;code&gt;5.0.100-rtm.20526.5&lt;/code&gt; (#13920)
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>This command is intended to make it easy to download and install the latest PowerShell (7.x) stable release on Windows platforms. The command will download the 64bit MSI package and initiate the installation process. You can control how much of the installation you want to interact with. The default is the full, interactive installer. Previous versions will either be removed or overwritten based on the MSI package. You also have options to enable PowerShell remoting over WSMan as well as enable a context menu in Windows Explorer to open the current location in a PowerShell session.</maml:para>
+      <maml:para>This command is intended to make it easy to download and install the latest PowerShell (7.x) stable release on Windows platforms. The command will download the 64bit MSI package and initiate the installation process. You can control how much of the installation you want to interact with. The default is the full, interactive installer. Previous versions will either be removed or overwritten based on the MSI package. You also have options to enable PowerShell remoting over WSMan as well as enable a context menu in Windows Explorer to open the current location in a PowerShell session. A log file will be created in $env:temp\PS7Install.log.</maml:para>
       <maml:para>This command will only work on Windows platforms. Non-Windows platforms have better native installation tools.</maml:para>
       <maml:para>This command has an alias of Install-PSCore for backward compatibility.</maml:para>
     </maml:description>
@@ -986,6 +964,28 @@ Bump .NET to version &lt;code&gt;5.0.100-rtm.20526.5&lt;/code&gt; (#13920)
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DisableTelemetry</maml:name>
+          <maml:description>
+            <maml:para>Disable telemetry.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DisableWindowsUpdate</maml:name>
+          <maml:description>
+            <maml:para>Disable updating PowerShell through Windows Update or WSUS.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
           <maml:name>WhatIf</maml:name>
           <maml:description>
@@ -1076,6 +1076,30 @@ Bump .NET to version &lt;code&gt;5.0.100-rtm.20526.5&lt;/code&gt; (#13920)
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>DisableTelemetry</maml:name>
+        <maml:description>
+          <maml:para>Disable telemetry.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>DisableWindowsUpdate</maml:name>
+        <maml:description>
+          <maml:para>Disable updating PowerShell through Windows Update or WSUS.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
         <maml:name>WhatIf</maml:name>
         <maml:description>
@@ -1123,7 +1147,7 @@ Bump .NET to version &lt;code&gt;5.0.100-rtm.20526.5&lt;/code&gt; (#13920)
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -1134,11 +1158,18 @@ Bump .NET to version &lt;code&gt;5.0.100-rtm.20526.5&lt;/code&gt; (#13920)
           <maml:para>Download and install using the passive mode which will only display a progress bar. PowerShell remoting will be enabled as well as the "Open in PowerShell" context menu in Windows Explorer.</maml:para>
         </dev:remarks>
       </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Install-PowerShell</dev:code>
+        <dev:remarks>
+          <maml:para>Download and install using the full interactive mode. Use this when you need more granular control of installation options. The MSI will be downloaded and saved to $env:TEMP. It will not be deleted after installation.</maml:para>
+        </dev:remarks>
+      </command:example>
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/2U6BcfQ</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/3f6caf</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Save-PSReleaseAsset</maml:linkText>
@@ -1160,7 +1191,7 @@ Bump .NET to version &lt;code&gt;5.0.100-rtm.20526.5&lt;/code&gt; (#13920)
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>This command is intended to make it easy to download and install the latest PowerShell preview release on Windows platforms. The command will download the 64bit MSI package and initiate the installation process. You can control how much of the installation you want to interact with. The default is the full, interactive installer. If you have previous PowerShell preview versions installed, they will be either removed or overwritten.</maml:para>
+      <maml:para>This command is intended to make it easy to download and install the latest PowerShell preview release on Windows platforms. The command will download the 64bit MSI package and initiate the installation process. You can control how much of the installation you want to interact with. The default is the full, interactive installer. If you have previous PowerShell preview versions installed, they will be either removed or overwritten. A log file will be created in $env:temp\PS7Install.log</maml:para>
       <maml:para>This command will only work on Windows platforms. Non-Windows platforms have native installation tools.</maml:para>
     </maml:description>
     <command:syntax>
@@ -1233,6 +1264,28 @@ Bump .NET to version &lt;code&gt;5.0.100-rtm.20526.5&lt;/code&gt; (#13920)
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DisableTelemetry</maml:name>
+          <maml:description>
+            <maml:para>Disable telemetry.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DisableWindowsUpdate</maml:name>
+          <maml:description>
+            <maml:para>Disable updating PowerShell through Windows Update or WSUS.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
           <maml:name>WhatIf</maml:name>
           <maml:description>
@@ -1323,6 +1376,30 @@ Bump .NET to version &lt;code&gt;5.0.100-rtm.20526.5&lt;/code&gt; (#13920)
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>DisableTelemetry</maml:name>
+        <maml:description>
+          <maml:para>Disable telemetry.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>DisableWindowsUpdate</maml:name>
+        <maml:description>
+          <maml:para>Disable updating PowerShell through Windows Update or WSUS.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
         <maml:name>WhatIf</maml:name>
         <maml:description>
@@ -1370,7 +1447,7 @@ Bump .NET to version &lt;code&gt;5.0.100-rtm.20526.5&lt;/code&gt; (#13920)
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -1381,11 +1458,18 @@ Bump .NET to version &lt;code&gt;5.0.100-rtm.20526.5&lt;/code&gt; (#13920)
           <maml:para>Download and install using the passive mode which will only display a progress bar. PowerShell remoting will also be enabled.</maml:para>
         </dev:remarks>
       </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Install-PSPreview</dev:code>
+        <dev:remarks>
+          <maml:para>Download and install using the full interactive mode. Use this when you need more granular control of installation options. The MSI will be downloaded and saved to $env:TEMP. It will not be deleted after installation.</maml:para>
+        </dev:remarks>
+      </command:example>
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>http://bit.ly/328btlM</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/3e370b</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Save-PSReleaseAsset</maml:linkText>
@@ -1462,7 +1546,7 @@ Bump .NET to version &lt;code&gt;5.0.100-rtm.20526.5&lt;/code&gt; (#13920)
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -1475,17 +1559,17 @@ Bump .NET to version &lt;code&gt;5.0.100-rtm.20526.5&lt;/code&gt; (#13920)
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $a = Get-PSIssue -since "1/1/2021"
+        <dev:code>PS C:\&gt; $a = Get-PSIssue -since "1/1/2025"
 PS C:\&gt; $a[1] | Open-PSSIssue</dev:code>
         <dev:remarks>
-          <maml:para>The first command gets all issues since 1/1/2021. The second command opens the issue in your web browser. The objects from Get-PSIssue also have a Show() method which will achieve the same result.</maml:para>
+          <maml:para>The first command gets all issues since 1/1/2025. The second command opens the issue in your web browser. The objects from Get-PSIssue also have a Show() method which will achieve the same result.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/3Aw48h0</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/c7cce0</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-PSIssue</maml:linkText>
@@ -1667,16 +1751,18 @@ PS C:\&gt; $a[1] | Open-PSSIssue</dev:code>
             <maml:para>The platform you wish to download.</maml:para>
           </maml:description>
           <command:parameterValueGroup>
-            <command:parameterValue required="false" command:variableLength="false">Rhel</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">Raspbian</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">Ubuntu</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">Debian</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">Windows</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">AppImage</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">Arm</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">MacOS</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">Alpine</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">FXDependent</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">'Rhel'</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">'Raspbian'</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">'Ubuntu'</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">'Debian'</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">'Windows'</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">'Arm'</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">'MacOS'</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">'Alpine'</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">'FXDependent'</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">'CBL-Mariner'</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">'CentOS'</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">'Linux'</command:parameterValue>
           </command:parameterValueGroup>
           <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
           <dev:type>
@@ -1875,7 +1961,7 @@ PS C:\&gt; $a[1] | Open-PSSIssue</dev:code>
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -1918,7 +2004,7 @@ Mode                LastWriteTime         Length Name
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>http://bit.ly/325USis</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/35d171</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Invoke-WebRequest</maml:linkText>

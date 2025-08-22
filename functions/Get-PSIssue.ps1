@@ -1,6 +1,6 @@
 Function Get-PSIssue {
     [cmdletbinding()]
-    [outputtype("GitHubIssue")]
+    [OutputType("GitHubIssue")]
     Param(
         [Parameter(HelpMessage = "Display issues updated since this time.")]
         [datetime]$Since,
@@ -12,8 +12,13 @@ Function Get-PSIssue {
 
     )
     Begin {
-        Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Starting $($myinvocation.mycommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Starting $($MyInvocation.MyCommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Running PowerShell $($PSVersionTable.PSVersion) in $($host.name)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Using module version $moduleVersion"
 
+        If ($PSBoundParameters) {
+            Write-Information $PSBoundParameters -Tags runtime
+        }
         #number of results per page is 25 so calculate how many pages are needed.
         [int]$m = $count / 25
         if ($m -ne 1) {
@@ -23,7 +28,7 @@ Function Get-PSIssue {
             [int]$PageCount = 1
         }
 
-        Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Getting $pageCount page(s)."
+        Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Getting $pageCount page(s)."
         $uri = "https://api.github.com/repos/PowerShell/PowerShell/issues?&state=open&sort=updated&direction=desc&per_page=25"
 
         $header = @{ accept = "application/vnd.github.v3+json" }
@@ -34,9 +39,9 @@ Function Get-PSIssue {
         }
 
         if ($Label) {
-            $Labelstring = $Label -join ","
-            $uri += "&labels=$Labelstring"
-            Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Filtering for labels $Labelstring"
+            $labelString = $Label -join ","
+            $uri += "&labels=$labelString"
+            Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Filtering for labels $labelString"
         }
 
         $irm = @{
@@ -44,20 +49,24 @@ Function Get-PSIssue {
             headers          = $header
             DisableKeepAlive = $True
             UseBasicParsing  = $True
+            OutVariable      = 'raw'
         }
+
+        Write-Information $uri -Tags runtime
+        Write-Information $header -Tags runtime
 
         $results = [System.Collections.Generic.List[object]]::new()
         #set a flag to indicate we should keep getting pages
         $run = $True
     } #begin
     Process {
-
         1..$pageCount | ForEach-Object {
             if ($run) {
                 $irm.uri = "$uri&page=$_"
-                Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Getting recent PowerShell issues: $($irm.uri)"
+                Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Getting recent PowerShell issues: $($irm.uri)"
                 #filter out pull requests
                 $r = (Invoke-RestMethod @irm).ForEach({ $_ | NewGHIssue })
+                Write-Information $raw -tags data
                 if ($r.title) {
                     $results.AddRange($r)
                 }
@@ -67,10 +76,10 @@ Function Get-PSIssue {
                 }
             } #if $run
         } #foreach page
-        Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Returned $($results.count) matching issues"
+        Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Returned $($results.count) matching issues"
         $results
     } #process
     End {
-        Write-Verbose "[$((Get-Date).TimeofDay) END    ] Ending $($myinvocation.mycommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Ending $($MyInvocation.MyCommand)"
     } #end
 }

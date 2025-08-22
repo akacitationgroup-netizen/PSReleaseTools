@@ -34,13 +34,15 @@ function Get-PSReleaseSummary {
         } #if
     } #dynamic parameter
 
-
     begin {
-        Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Starting: $($MyInvocation.MyCommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Starting: $($MyInvocation.MyCommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Running PowerShell $($PSVersionTable.PSVersion) in $($host.name)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Using module version $moduleVersion"
     } #begin
 
     process {
-        Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Using parameter set $($PSCmdlet.ParameterSetName)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Using parameter set $($PSCmdlet.ParameterSetName)"
+        Write-Information $PSBoundParameters
         $PSBoundParameters | Out-String | Write-Verbose
         if ($Preview) {
             $data = GetData -Preview
@@ -49,31 +51,49 @@ function Get-PSReleaseSummary {
             $data = GetData
         }
 
+        Write-Information $data
         if ($PSBoundParameters.ContainsKey("online")) {
-            Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Opening $($data.html_url)"
+            Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Opening $($data.html_url)"
             Start-Process $data.html_url
         }
         else {
-            Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Displaying locally"
-            $dl = $data.assets |
+            Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Displaying locally"
+            $dl = $data.assets | where Name -NotMatch 'hashes' |
                 Select-Object @{Name = "Filename"; Expression = { $_.Name } },
                 @{Name = "Updated"; Expression = { $_.updated_at -as [datetime] } },
                 @{Name = "SizeMB"; Expression = { $_.size / 1MB -as [int] } }
-
+            Write-Information $dl
             if ($AsMarkdown) {
-                Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Formatting as markdown"
+                Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Formatting as markdown"
                 #create a markdown table from download data
-                $tbl = (($DL | ConvertTo-Csv -NoTypeInformation -Delimiter "|").Replace('"', '') -Replace '^', "|") -replace "$", "|`n"
+                $propCount = $dl[0].PSObject.properties.name.count
+                $propNames = $dl[0].PSObject.properties.name
+                $tbl = @"
+## Downloads
+
+|$($propNames -join "|")|
+| $((1..$propCount | Foreach {"-----"}) -join " | ") |
+
+"@
+
+                foreach ($item in $dl) {
+                    $out = for ($i=0;$i -lt $propNames.Count;$i++) {
+                        $item.$($propNames[$i])
+                    }
+                    $entry = $out -join " | "
+                    $tbl+= "| $entry |`n"
+
+                }
+
+                #$tbl = (($DL | ConvertTo-Csv -NoTypeInformation -Delimiter "|").Replace('"', '') -Replace '^', "|") -replace "$", "|`n"
 
                 $out = @"
 # $($data.name.Trim())
 
-$($data.body.Trim())
+$($data.body -replace "^\p{C}#","#")
 
-## Downloads
+$tbl
 
-$($tbl[0])|---|---|---|
-$($tbl[1..$($tbl.Count)])
 Published: $($data.published_at -as [datetime])
 "@
 
@@ -103,7 +123,7 @@ $($DL | Out-String)
     } #process
 
     end {
-        Write-Verbose "[$((Get-Date).TimeofDay) END    ] Ending: $($MyInvocation.MyCommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Ending: $($MyInvocation.MyCommand)"
     } #end
 
 }

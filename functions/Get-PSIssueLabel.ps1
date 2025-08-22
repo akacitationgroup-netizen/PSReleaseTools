@@ -4,7 +4,9 @@ Function Get-PSIssueLabel {
         [Parameter(HelpMessage = "Specify a label name. You can use wildcards.")]
         [string]$Name
     )
-    Write-Verbose "Starting $($myinvocation.mycommand)"
+    Write-Verbose "Starting $($MyInvocation.MyCommand)"
+    Write-Verbose "Running PowerShell $($PSVersionTable.PSVersion) in $($host.name)"
+    Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Using module version $moduleVersion"
 
     $Label = [System.Collections.Generic.list[object]]::new()
 
@@ -33,5 +35,5 @@ Function Get-PSIssueLabel {
     else {
         $Label
     }$p
-    Write-Verbose "Ending $($myinvocation.mycommand)"
+    Write-Verbose "Ending $($MyInvocation.MyCommand)"
 }

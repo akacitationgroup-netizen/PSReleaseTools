@@ -13,35 +13,37 @@ This module should work cross-platform on both Windows PowerShell 5.1 and PowerS
 You can install this module from the PowerShell Gallery.
 
 ```powershell
-Install-Module PSReleaseTools
+Install-PSResource PSReleaseTools
 ```
 
 ## The Module
 
 The module currently has 9 commands:
 
-- [Get-PSReleaseCurrent](Docs/Get-PSReleaseCurrent.md)
-- [Get-PSReleaseSummary](Docs/Get-PSReleaseSummary.md)
-- [Get-PSReleaseAsset](Docs/Get-PSReleaseAsset.md)
-- [Save-PSReleaseAsset](Docs/Save-PSReleaseAsset.md)
-- [Install-PowerShell](Docs/Install-PowerShell.md)
-- [Install-PSPreview](Docs/Install-PSPreview.md)
-- [Get-PSIssue](Docs/Get-PSIssue.md)
-- [Get-PSIssueLabel](Docs/Get-PSIssueLabel.md)
-- [Open-PSIssue](Docs/Open-PSIssue.md)
+| Name | Alias | Synopsis |
+|------|-------|----------|
+| [Get-PSIssue](Docs/Get-PSIssue.md) |  | Get PowerShell issues from GitHub. |
+| [Get-PSIssueLabel](Docs/Get-PSIssueLabel.md) |  | Get PowerShell issue labels. |
+| [Get-PSReleaseAsset](Docs/Get-PSReleaseAsset.md) |  | Get PowerShell release assets. |
+| [Get-PSReleaseCurrent](Docs/Get-PSReleaseCurrent.md) |  | Get the current PowerShell 7.x release. |
+| [Get-PSReleaseSummary](Docs/Get-PSReleaseSummary.md) |  | Get information about the latest PowerShell 7.x release. |
+| [Install-PowerShell](Docs/Install-PowerShell.md) | *Install-PSCore* | Install the latest PowerShell 7.x version on Windows. |
+| [Install-PSPreview](Docs/Install-PSPreview.md) |  | Install the latest PowerShell Preview on Windows. |
+| [Open-PSIssue](Docs/Open-PSIssue.md) |  | Open a PowerShell issue in your browser. |
+| [Save-PSReleaseAsset](Docs/Save-PSReleaseAsset.md) |  | Download the latest PowerShell from the Github PowerShell repository. |
 
 All of the functions take advantage of the [GitHub API](https://developer.github.com/v3/ "learn more about the API") which in combination with either [Invoke-RestMethod](http://go.microsoft.com/fwlink/?LinkID=217034 "read online help for the cmdlet") or [Invoke-WebRequest](http://go.microsoft.com/fwlink/?LinkID=217035  "read online help for the cmdlet"), allow you to programmatically interact with GitHub.
 
 ### Get Current Release
 
-The first command, `Get-PSReleaseCurrent` can provide a quick summary view of the latest stable or preview release.
+The first command, [`Get-PSReleaseCurrent`](Docs/Get-PSReleaseCurrent.md) can provide a quick summary view of the latest stable or preview release.
 
 ```powershell
 PS C:\> Get-PSReleaseCurrent
 
 Name                                   OnlineVersion       Released                    LocalVersion
 ----                                   -------------       --------                    ------------
-v7.1.0 Release of PowerShell           7.1.0               11/11/2020 4:23:08 PM              7.1.0
+v7.5.2 Release of PowerShell           7.5.2               6/24/2025 9:31:53 PM               7.5.2
 ```
 
 The command writes a custom object to the pipeline which has additional properties.
@@ -49,88 +51,99 @@ The command writes a custom object to the pipeline which has additional properti
 ```powershell
 PS C:\> Get-PSReleaseCurrent -preview | Select-Object *
 
-Name         : v7.2.0-preview.2 Release of PowerShell
-Version      : v7.2.0-preview.2
-Released     : 12/15/2020 9:31:39 PM
-LocalVersion : 7.1.0
-URL          : https://github.com/PowerShell/PowerShell/releases/tag/v7.2.0-preview.2
+Name         : v7.6.0-preview.4 Release of PowerShell
+Version      : v7.6.0-preview.4
+Released     : 4/8/2025 10:00:57 PM
+LocalVersion : 7.5.2
+URL          : https://github.com/PowerShell/PowerShell/releases/tag/v7.6.0-preview.4
 Draft        : False
 Prerelease   : True
 ```
 
 ### Summary Information
 
-`Get-PSReleaseSummary` queries the PowerShell repository release page and constructs a text summary. You can also have the command write the report text as markdown.
+[`Get-PSReleaseSummary`](Docs/Get-PSReleaseSummary.md) queries the PowerShell repository release page and constructs a text summary. You can also have the command write the report text as markdown.
 
 ![get-psreleasesummary.png](/images/get-psreleasesummary.png)
 
-I put the release name and date right at the top so you can quickly check if you need to download something new. In GitHub, each release file is referred to as an *asset*. The `Get-PSReleaseAsset` command will query GitHub about each file and write a custom object to the pipeline.
+I put the release name and date right at the top so you can quickly check if you need to download something new. In GitHub, each release file is referred to as an _asset_. The [`Get-PSReleaseAsset` ](Docs/Get-PSReleaseAsset.md) command will query GitHub about each file and write a custom object to the pipeline.
 
 ```powershell
 PS C:\> Get-PSReleaseAsset
 
-FileName      : powershell-7.1.0-1.centos.8.x86_64.rpm
-Family        : CentOS
-Format        : rpm
-SizeMB        : 65
-Hash          : F3985B24719534F27A6C603416C7644771E17C75AFBFD8E6D5E98390045BF9D3
-Created       : 11/10/2020 8:08:04 PM
-Updated       : 11/10/2020 8:08:06 PM
-URL           : https://github.com/PowerShell/PowerShell/releases/download/v7.1.0/powershell-7.1.0-1.centos.8.x86_64.rpm
-DownloadCount : 10509
+FileName  : powershell-7.5.2-1.cm.aarch64.rpm
+Family    : {Arm, CBL-Mariner}
+Format    : rpm
+Updated   : 6/24/2025 8:49:15 PM
+Downloads : 38,280
+SizeMB    : 37
+URL       : https://github.com/PowerShell/PowerShell/releases/download/v7.5.2/powershell-7.5.2-1.cm.aarch64.rpm
+
+FileName  : powershell-7.5.2-1.cm.x86_64.rpm
+Family    : CBL-Mariner
+Format    : rpm
+Updated   : 6/24/2025 8:49:18 PM
+Downloads : 13,333
+SizeMB    : 39
+URL       : https://github.com/PowerShell/PowerShell/releases/download/v7.5.2/powershell-7.5.2-1.cm.x86_64.rpm
+
+FileName  : powershell-7.5.2-1.rh.x86_64.rpm
+Family    : {Rhel, CentOS}
+Format    : rpm
+Updated   : 6/24/2025 8:49:21 PM
+Downloads : 9,372
+SizeMB    : 71
+URL       : https://github.com/PowerShell/PowerShell/releases/download/v7.5.2/powershell-7.5.2-1.rh.x86_64.rpm
 ...
 ```
 
 By default, the command will display assets for all platforms, but I added a `-Family` parameter if you want to limit yourself to a single entry like MacOS.
 
 ```powershell
-PS C:\> Get-PSReleaseAsset -Family MacOS
+PS C:\> Get-PSReleaseAsset -Family MacOS | Select *
 
-FileName      : powershell-7.1.0-osx-x64.pkg
-Family        : MacOS
+FileName      : powershell-7.5.2-osx-arm64.pkg
+Family        : {Arm, MacOS}
 Format        : pkg
-SizeMB        : 63
-Hash          : 9B7397266711B279B5413F42ABC899730539C8D78A29FD116E19A1BB78244D78
-Created       : 11/10/2020 8:08:18 PM
-Updated       : 11/10/2020 8:08:20 PM
-URL           : https://github.com/PowerShell/PowerShell/releases/download/v7.1.0/powershell-7.1.0-osx-x64.pkg
-DownloadCount : 47202
+Size          : 71331087
+Hash          : 84F095DE7DDD62C0B2F1D6DC68EFE0B35A0FB90C2FE5127DE2B0DD15EAB4D95C
+Created       : 6/24/2025 8:49:39 PM
+Updated       : 6/24/2025 8:49:42 PM
+URL           : https://github.com/PowerShell/PowerShell/releases/download/v7.5.2/powershell-7.5.2-osx-arm64.pkg
+DownloadCount : 309127
 
-FileName      : powershell-7.1.0-osx-x64.tar.gz
-Family        : MacOS
+FileName      : powershell-7.5.2-osx-arm64.tar.gz
+Family        : {Arm, MacOS}
 Format        : gz
-SizeMB        : 63
-Hash          : 10CE8B2837F30F127F866E9680F518B9AA6288222C24B62AD1CAD868FB2A66E9
-Created       : 11/10/2020 8:08:21 PM
-Updated       : 11/10/2020 8:08:26 PM
-URL           : https://github.com/PowerShell/PowerShell/releases/download/v7.1.0/powershell-7.1.0-osx-x64.tar.gz
-DownloadCount : 3657
+Size          : 70976191
+Hash          : A02D1D79589C71E8D35E458D90F085CFC1F0A688EBBEA4DAB8632187C057F7A1
+Created       : 6/24/2025 8:49:42 PM
+Updated       : 6/24/2025 8:49:46 PM
+URL           : https://github.com/PowerShell/PowerShell/releases/download/v7.5.2/powershell-7.5.2-osx-arm64.tar.gz
+DownloadCount : 16079
 ...
 ```
 
 Of course, you will want to download these files, which is the job of the last command. By default, `Get-PSReleaserAsset` will save all files to the current directory unless you specify a different path. You can limit the selection to a specific platform with the `-Family` parameter, which uses a validation set.
 
 ```powershell
-PS C:\> Save-PSReleaseAsset -Family Ubuntu -Path D:\Temp -WhatIf
-What if: Performing the operation "Downloading https://github.com/PowerShell/PowerShell/releases/download/v7.1.0/powershell_7.1.0-1.ubuntu.16.04_amd64.deb" on target "D:\temp\powershell_7.1.0-1.ubuntu.16.04_amd64.deb".
-What if: Performing the operation "Downloading https://github.com/PowerShell/PowerShell/releases/download/v7.1.0/powershell_7.1.0-1.ubuntu.18.04_amd64.deb" on target "D:\temp\powershell_7.1.0-1.ubuntu.18.04_amd64.deb".
-What if: Performing the operation "Downloading https://github.com/PowerShell/PowerShell/releases/download/v7.1.0/powershell_7.1.0-1.ubuntu.20.04_amd64.deb" on target "D:\temp\powershell_7.1.0-1.ubuntu.20.04_amd64.deb".
+PS C:\> Save-PSReleaseAsset -Family Ubuntu -Path C:\Temp -WhatIf
+What if: Performing the operation "Downloading https://github.com/PowerShell/PowerShell/releases/download/v7.5.2/powershell_7.5.2-1.deb_amd64.deb" on target "c:\Temp\powershell_7.5.2-1.deb_amd64.deb".
 ```
 
-You can select multiple names. If you choose Windows, there is a dynamic parameter called `-Format` where you can select ZIP or MSI. `Save-PSReleaseAsset` supports `-WhatIf`.
+You can select multiple names. If you choose Windows, there is a dynamic parameter called `-Format` where you can select ZIP or MSI. [`Save-PSReleaseAsset`](Docs/Save-PSReleaseAsset.md) supports `-WhatIf`.
 
 I also realized you might run `Get-PSReleaseAsset`, perhaps to examine details before downloading. Since you have those objects, why not be able to pipe them to the save command?
 
 ```powershell
-PS C:\> Get-PSReleaseAsset -Family Rhel  | Save-PSReleaseAsset -Path D:\Temp -Passthru
+PS C:\> Get-PSReleaseAsset -Family Rhel | Save-PSReleaseAsset -Path C:\Temp -Passthru
+
+        Directory: C:\Temp
 
 
-    Directory: D:\Temp
-
-
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----         1/13/2021  11:13 AM       67752949 powershell-7.1.0-1.rhel.7.x86_64.rpm
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a---         8/22/2025  10:05 AM       74955389 powershell-7.5.2-1.rh.x86_64.rpm
 ```
 
 The current version of this module uses regular expression named captures to pull out the file name and corresponding SHA256 hashes. The save command then calls [Get-FileHash](https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/get-filehash?view=powershell-5.1&WT.mc_id=ps-gethelp "read online help for the cmdlet") to get the current file hash and compares them.
@@ -146,13 +159,13 @@ Save-PSReleaseAsset -Path d:\temp -Passthru | Invoke-Item
 
 Or you can use one of two newer functions to install the latest 64bit release. You can specify the interaction level.
 
- [Install-PSPreview](/Docs/Install-PSPreview.md) will download the latest 64-bit _*preview*_ build for Windows and kick off the installation.
+[`Install-PSPreview`](/Docs/Install-PSPreview.md) will download the latest 64-bit _*preview*_ build for Windows and kick off the installation.
 
  ```powershell
 Install-PSPreview -Mode Passive
  ```
 
- [Install-PowerShell](/Docs/Install-PowerShell.md) will do the same thing but for the latest stable release. The command retains `Install-PSCore` as an alias.
+[`Install-PowerShell`](/Docs/Install-PowerShell.md) will do the same thing but for the latest stable release. The command retains `Install-PSCore` as an alias.
 
 ```powershell
 Install-PowerShell -Mode Quiet -EnableRemoting -EnableContextMenu -EnableRunContext
@@ -172,7 +185,7 @@ A new set of commands have been introduced in [v1.8.0](https://github.com/jdhits
 
 #### Get-PSIssue
 
-`Get-PSIssue` is intended to get open PowerShell issues from Github. With no parameters, you can get the 25 most recent issues. Use the `-Count` parameter to increase that value using one of the possible values. The actual number of issues returned may vary depending on the rest of your command and how GitHub pages results.
+[`Get-PSIssue`](Docs/Get-PSIssue.md) is intended to get open PowerShell issues from Github. With no parameters, you can get the 25 most recent issues. Use the `-Count` parameter to increase that value using one of the possible values. The actual number of issues returned may vary depending on the rest of your command and how GitHub pages results.
 
 You can also fine-tune your search to get issues that have been updated since a given date. Finally, you can also limit your search to issues tagged with a specific label.
 
@@ -188,7 +201,7 @@ __Note:__ The _PSIssue_ commands use the GitHub API and anonymous connections. T
 
 #### Get-PSIssueLabel
 
-To make it easier to search for issues based on a label run `Get-PSIssueLabel`. This command will list available labels from the PowerShell repository. However, you most likely won't need to run this command often. When you import the `PSReleaseTools` module, it will create a global variable called `$PSIssueLabel`.
+To make it easier to search for issues based on a label run [`Get-PSIssueLabel`](Docs/Get-PSIssueLabel.md). This command will list available labels from the PowerShell repository. However, you most likely won't need to run this command often. When you import the `PSReleaseTools` module, it will create a global variable called `$PSIssueLabel`.
 
 ```powershell
 PS C:\> $PSIssueLabel
@@ -211,7 +224,7 @@ This variable is used as part of an argument completer for the `Labels` paramete
 
 #### Open-PSIssue
 
-Finally, you may want to respond to an issue. If you run `Open-PSIssue` without any parameters, it should open the Issues section of the PowerShell repository in your browser. Or you can pipe an issue object to the command, as long as you include the `Url` property.
+Finally, you may want to respond to an issue. If you run [`Open-PSIssue`](Docs/Open-PSIssue.md) without any parameters, it should open the Issues section of the PowerShell repository in your browser. Or you can pipe an issue object to the command, as long as you include the `Url` property.
 
 ```powershell
 Get-PSIssue | Select-Object Updated,Labels,Title,Url | Out-GridView -PassThru | Open-PSIssue
@@ -224,5 +237,3 @@ There are no plans to add a command to open a new issue from a PowerShell sessio
 If you have suggestions or encounter problems, please post an issue in this GitHub repository. If you find this project useful, or any of my work, please consider a small support donation.
 
 [<kbd>:heart:Sponsor</kbd>](https://paypal.me/jdhitsolutions?locale.x=en_US)
-
-Last Updated 2021-10-15 15:21:21Z
