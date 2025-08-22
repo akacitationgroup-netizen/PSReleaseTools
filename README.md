@@ -22,21 +22,21 @@ The module currently has 9 commands:
 
 | Name | Alias | Synopsis |
 |------|-------|----------|
-| [Get-PSIssue](Docs/Get-PSIssue.md) |  | Get PowerShell issues from GitHub. |
-| [Get-PSIssueLabel](Docs/Get-PSIssueLabel.md) |  | Get PowerShell issue labels. |
-| [Get-PSReleaseAsset](Docs/Get-PSReleaseAsset.md) |  | Get PowerShell release assets. |
-| [Get-PSReleaseCurrent](Docs/Get-PSReleaseCurrent.md) |  | Get the current PowerShell 7.x release. |
-| [Get-PSReleaseSummary](Docs/Get-PSReleaseSummary.md) |  | Get information about the latest PowerShell 7.x release. |
-| [Install-PowerShell](Docs/Install-PowerShell.md) | *Install-PSCore* | Install the latest PowerShell 7.x version on Windows. |
-| [Install-PSPreview](Docs/Install-PSPreview.md) |  | Install the latest PowerShell Preview on Windows. |
-| [Open-PSIssue](Docs/Open-PSIssue.md) |  | Open a PowerShell issue in your browser. |
-| [Save-PSReleaseAsset](Docs/Save-PSReleaseAsset.md) |  | Download the latest PowerShell from the Github PowerShell repository. |
+| [Get-PSIssue](docs/Get-PSIssue.md) |  | Get PowerShell issues from GitHub. |
+| [Get-PSIssueLabel](docs/Get-PSIssueLabel.md) |  | Get PowerShell issue labels. |
+| [Get-PSReleaseAsset](docs/Get-PSReleaseAsset.md) |  | Get PowerShell release assets. |
+| [Get-PSReleaseCurrent](docs/Get-PSReleaseCurrent.md) |  | Get the current PowerShell 7.x release. |
+| [Get-PSReleaseSummary](docs/Get-PSReleaseSummary.md) |  | Get information about the latest PowerShell 7.x release. |
+| [Install-PowerShell](docs/Install-PowerShell.md) | *Install-PSCore* | Install the latest PowerShell 7.x version on Windows. |
+| [Install-PSPreview](docs/Install-PSPreview.md) |  | Install the latest PowerShell Preview on Windows. |
+| [Open-PSIssue](docs/Open-PSIssue.md) |  | Open a PowerShell issue in your browser. |
+| [Save-PSReleaseAsset](docs/Save-PSReleaseAsset.md) |  | Download the latest PowerShell from the Github PowerShell repository. |
 
 All of the functions take advantage of the [GitHub API](https://developer.github.com/v3/ "learn more about the API") which in combination with either [Invoke-RestMethod](http://go.microsoft.com/fwlink/?LinkID=217034 "read online help for the cmdlet") or [Invoke-WebRequest](http://go.microsoft.com/fwlink/?LinkID=217035  "read online help for the cmdlet"), allow you to programmatically interact with GitHub.
 
 ### Get Current Release
 
-The first command, [`Get-PSReleaseCurrent`](Docs/Get-PSReleaseCurrent.md) can provide a quick summary view of the latest stable or preview release.
+The first command, [`Get-PSReleaseCurrent`](docs/Get-PSReleaseCurrent.md) can provide a quick summary view of the latest stable or preview release.
 
 ```powershell
 PS C:\> Get-PSReleaseCurrent
@@ -62,11 +62,11 @@ Prerelease   : True
 
 ### Summary Information
 
-[`Get-PSReleaseSummary`](Docs/Get-PSReleaseSummary.md) queries the PowerShell repository release page and constructs a text summary. You can also have the command write the report text as markdown.
+[`Get-PSReleaseSummary`](docs/Get-PSReleaseSummary.md) queries the PowerShell repository release page and constructs a text summary. You can also have the command write the report text as markdown.
 
 ![get-psreleasesummary.png](/images/get-psreleasesummary.png)
 
-I put the release name and date right at the top so you can quickly check if you need to download something new. In GitHub, each release file is referred to as an _asset_. The [`Get-PSReleaseAsset` ](Docs/Get-PSReleaseAsset.md) command will query GitHub about each file and write a custom object to the pipeline.
+I put the release name and date right at the top so you can quickly check if you need to download something new. In GitHub, each release file is referred to as an _asset_. The [`Get-PSReleaseAsset` ](docs/Get-PSReleaseAsset.md) command will query GitHub about each file and write a custom object to the pipeline.
 
 ```powershell
 PS C:\> Get-PSReleaseAsset
@@ -131,7 +131,7 @@ PS C:\> Save-PSReleaseAsset -Family Ubuntu -Path C:\Temp -WhatIf
 What if: Performing the operation "Downloading https://github.com/PowerShell/PowerShell/releases/download/v7.5.2/powershell_7.5.2-1.deb_amd64.deb" on target "c:\Temp\powershell_7.5.2-1.deb_amd64.deb".
 ```
 
-You can select multiple names. If you choose Windows, there is a dynamic parameter called `-Format` where you can select ZIP or MSI. [`Save-PSReleaseAsset`](Docs/Save-PSReleaseAsset.md) supports `-WhatIf`.
+You can select multiple names. If you choose Windows, there is a dynamic parameter called `-Format` where you can select ZIP or MSI. [`Save-PSReleaseAsset`](docs/Save-PSReleaseAsset.md) supports `-WhatIf`.
 
 I also realized you might run `Get-PSReleaseAsset`, perhaps to examine details before downloading. Since you have those objects, why not be able to pipe them to the save command?
 
@@ -159,13 +159,13 @@ Save-PSReleaseAsset -Path d:\temp -Passthru | Invoke-Item
 
 Or you can use one of two newer functions to install the latest 64bit release. You can specify the interaction level.
 
-[`Install-PSPreview`](/Docs/Install-PSPreview.md) will download the latest 64-bit _*preview*_ build for Windows and kick off the installation.
+[`Install-PSPreview`](/docs/Install-PSPreview.md) will download the latest 64-bit _*preview*_ build for Windows and kick off the installation.
 
  ```powershell
 Install-PSPreview -Mode Passive
  ```
 
-[`Install-PowerShell`](/Docs/Install-PowerShell.md) will do the same thing but for the latest stable release. The command retains `Install-PSCore` as an alias.
+[`Install-PowerShell`](/docs/Install-PowerShell.md) will do the same thing but for the latest stable release. The command retains `Install-PSCore` as an alias.
 
 ```powershell
 Install-PowerShell -Mode Quiet -EnableRemoting -EnableContextMenu -EnableRunContext
@@ -185,7 +185,7 @@ A new set of commands have been introduced in [v1.8.0](https://github.com/jdhits
 
 #### Get-PSIssue
 
-[`Get-PSIssue`](Docs/Get-PSIssue.md) is intended to get open PowerShell issues from Github. With no parameters, you can get the 25 most recent issues. Use the `-Count` parameter to increase that value using one of the possible values. The actual number of issues returned may vary depending on the rest of your command and how GitHub pages results.
+[`Get-PSIssue`](docs/Get-PSIssue.md) is intended to get open PowerShell issues from Github. With no parameters, you can get the 25 most recent issues. Use the `-Count` parameter to increase that value using one of the possible values. The actual number of issues returned may vary depending on the rest of your command and how GitHub pages results.
 
 You can also fine-tune your search to get issues that have been updated since a given date. Finally, you can also limit your search to issues tagged with a specific label.
 
@@ -197,11 +197,11 @@ Here is another way you might use the command.
 
 ![Get-PSIssue Summary](images/get-psissue-summary.png)
 
-__Note:__ The _PSIssue_ commands use the GitHub API and anonymous connections. The API has rate limits. If you run one of these commands excessively in a short period of time, you might see an error about exceeding the rate limit. If this happens, all you can do is wait an hour and try again. You can read more about GitHub rate-limiting [here](https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting "read the Github documentation on rate limiting").
+__Note:__ The _PSIssue_ commands use the GitHub API and anonymous connections. The API has rate limits. If you run one of these commands excessively in a short period of time, you might see an error about exceeding the rate limit. If this happens, all you can do is wait an hour and try again. You can read more about [GitHub rate-limiting](https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting "read the Github documentation on rate limiting").
 
 #### Get-PSIssueLabel
 
-To make it easier to search for issues based on a label run [`Get-PSIssueLabel`](Docs/Get-PSIssueLabel.md). This command will list available labels from the PowerShell repository. However, you most likely won't need to run this command often. When you import the `PSReleaseTools` module, it will create a global variable called `$PSIssueLabel`.
+To make it easier to search for issues based on a label run [`Get-PSIssueLabel`](docs/Get-PSIssueLabel.md). This command will list available labels from the PowerShell repository. However, you most likely won't need to run this command often. When you import the `PSReleaseTools` module, it will create a global variable called `$PSIssueLabel`.
 
 ```powershell
 PS C:\> $PSIssueLabel
@@ -224,7 +224,7 @@ This variable is used as part of an argument completer for the `Labels` paramete
 
 #### Open-PSIssue
 
-Finally, you may want to respond to an issue. If you run [`Open-PSIssue`](Docs/Open-PSIssue.md) without any parameters, it should open the Issues section of the PowerShell repository in your browser. Or you can pipe an issue object to the command, as long as you include the `Url` property.
+Finally, you may want to respond to an issue. If you run [`Open-PSIssue`](docs/Open-PSIssue.md) without any parameters, it should open the Issues section of the PowerShell repository in your browser. Or you can pipe an issue object to the command, as long as you include the `Url` property.
 
 ```powershell
 Get-PSIssue | Select-Object Updated,Labels,Title,Url | Out-GridView -PassThru | Open-PSIssue
